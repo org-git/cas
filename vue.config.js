@@ -25,7 +25,7 @@ module.exports = {
     sourceMap: false,
     // css预设器配置项
     loaderOptions: {
-      sass: { data: `@import '@/assets/sass/style.sass';` } //引入全局sass样式
+      sass: { data: `@import '@/assets/scss/style.scss';` } //引入全局sass样式
     },
     // 启用 CSS modules for all css / pre-processor files.
     modules: false
