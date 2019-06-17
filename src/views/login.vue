@@ -2,8 +2,8 @@
   <section>
     <div class="col-md-3 col-md-offset-6">
       <b-card-group deck>
-        <b-card header="Login" header-tag="header">
-          <b-form validated class="form-horizontal" role="form">
+        <b-card header="Login" header-tag="header" border-variant="primary">
+          <b-form validated class="form-horizontal" role="form" @submit="onSubmit">
             <b-form-group
               label-cols-md="3"
               label-align="right"
@@ -49,6 +49,12 @@ export default {
     return {
       user: { username: "admin", password: "123456" }
     };
+  },
+  methods: {
+    onSubmit(evt) {
+      evt.preventDefault();
+      alert(JSON.stringify(this.user));
+    }
   }
 };
 </script>
