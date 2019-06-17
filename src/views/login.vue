@@ -1,35 +1,54 @@
 <template>
   <section>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Login</h3>
-      </div>
-      <div class="panel-body">
-        <form role="form" class="form-horizontal col-md-6 col-md-offset-6">
-          <div class="form-group">
-            <label for="username" class="control-label col-md-4">UserName</label>
-            <div class="input-group col-md-8">
-              <input type="text" class="form-control" id="username" placeholder="username">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password" class="control-label col-md-4">Password</label>
-            <div class="input-group col-md-8">
-              <input type="password" class="form-control" id="password" placeholder="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-4 col-md-8">
-              <button type="button" class="btn btn-primary">
-                <span class="glyphicon glyphicon-search"></span>Login
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="panel-footer">
-        <span class="text-danger">****</span>
-      </div>
+    <div class="col-md-3 col-md-offset-6">
+      <b-card-group deck>
+        <b-card header="Login" header-tag="header">
+          <b-form validated class="form-horizontal" role="form">
+            <b-form-group
+              label-cols-md="3"
+              label-align="right"
+              label="UserName"
+              label-for="username"
+            >
+              <b-form-input
+                type="text"
+                v-model="user.username"
+                required
+                trim
+                placeholder="username"
+                id="username"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              label-cols-md="3"
+              label-align="right"
+              label="Password"
+              label-for="password"
+            >
+              <b-form-input
+                type="password"
+                v-model="user.password"
+                required
+                trim
+                placeholder="password"
+                id="password"
+              ></b-form-input>
+            </b-form-group>
+            <b-button type="submit" variant="primary">Login</b-button>
+          </b-form>
+        </b-card>
+      </b-card-group>
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: { username: "admin", password: "123456" }
+    };
+  }
+};
+</script>

@@ -1,25 +1,15 @@
 <template>
-  <ul class="pagination">
-    <li>
-      <a href="#">&laquo;</a>
-    </li>
-    <li class="active">
-      <a href="#">1</a>
-    </li>
-    <li class="disabled">
-      <a href="#">2</a>
-    </li>
-    <li>
-      <a href="#">3</a>
-    </li>
-    <li>
-      <a href="#">4</a>
-    </li>
-    <li>
-      <a href="#">5</a>
-    </li>
-    <li>
-      <a href="#">&raquo;</a>
-    </li>
-  </ul>
+  <div class="overflow-auto">
+    <b-pagination-nav :link-gen="linkGen" :number-of-pages="10" use-router></b-pagination-nav>
+  </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    linkGen(pageNum) {
+      return pageNum === 1 ? "?" : `?page=${pageNum}`;
+    }
+  }
+};
+</script>

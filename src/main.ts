@@ -3,12 +3,15 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Component from "vue-class-component";
-import * as Bootstrap from "bootstrap";
+import BootstrapVue from "bootstrap-vue";
 
 import "./registerServiceWorker";
+import "@/assets/scss/style.scss";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.config.productionTip = false;
-Vue.use(Bootstrap);
+Vue.use(BootstrapVue);
 
 Component.registerHooks([
   "beforeRouteEnter", // 进入路由之前
