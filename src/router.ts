@@ -9,18 +9,15 @@ export default new Router({
       path: "/",
       name: "home",
       component: resolve => require(["@/views/layout"], resolve),
+      redirect: "/dashboard",
       children: [
         {
-          path: "about",
-          name: "about",
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: () =>
-            import(/* webpackChunkName: "about" */ "./views/About.vue")
+          path: "dashboard",
+          name: "dashboard",
+          component: resolve => require(["@/views/dashboard.vue"], resolve)
         },
         {
-          path: "/login",
+          path: "login",
           name: "login",
           component: resolve => require(["@/views/login.vue"], resolve)
         }
