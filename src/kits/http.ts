@@ -1,16 +1,52 @@
-import Axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
-const httpServer = (opts: any) => {
-  const httpDefaultOpts = {
-    // http 默认配置
-    method: opts.method,
-    baseURL: process.env.BASE_URL,
+const httpServer: any = (opts: any) => {
+  /**
+   * 请求拦截
+   */
+  axios.interceptors.request.use(
+    config => {
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
+
+  /**
+   * 响应拦截
+   */
+  axios.interceptors.response.use(
+    response => {
+      if (response.status === 200) {
+        return Promise.resolve(response);
+      } else {
+        return Promise.reject(response);
+      }
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
+  /**
+   * 设置默认请求头
+   */
+  axios.defaults.headers = {
+    "X-Requested-With": "XMLHttpRequest",
+    "Content-Type": "application/json;charset=UTF-8" // "application/x-www-form-urlencoded",
+  };
+  /**
+   * http 默认配置
+   */
+  const httpDefaultOpts: AxiosRequestConfig = {
+    method: opts.method || "post",
+    baseURL: process.env.API_URL || "",
     url: opts.url,
     timeout: 100000,
     params: opts.params,
     data: opts.params,
     headers:
-      opts.method == "get"
+      opts.method === "get"
         ? {
             "X-Requested-With": "XMLHttpRequest",
             Accept: "application/json",
@@ -29,13 +65,13 @@ const httpServer = (opts: any) => {
         httpDefaultOpts.headers.systoken = token;
     }
     */
-  if (opts.method.toLowerCase() == "get") {
+  if (opts.method.toLowerCase() === "get") {
     delete httpDefaultOpts.data;
   } else {
     delete httpDefaultOpts.params;
   }
-  const promise = new Promise(function(resolve, reject) {
-    Axios(httpDefaultOpts)
+  const promise: Promise<any> = new Promise((resolve, reject) => {
+    axios(httpDefaultOpts)
       .then(res => {
         if (res.data.code == -3) {
           resolve(res.data);

@@ -3,7 +3,12 @@
     <div class="col-md-3 col-md-offset-6">
       <b-card-group deck>
         <b-card header="Login" header-tag="header" border-variant="primary">
-          <b-form validated class="form-horizontal" role="form" @submit="onSubmit">
+          <b-form
+            validated
+            class="form-horizontal"
+            role="form"
+            @submit="onSubmit"
+          >
             <b-form-group
               label-cols-md="3"
               label-align="right"
