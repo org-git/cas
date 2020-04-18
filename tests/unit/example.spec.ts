@@ -1,10 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import pagination from "@/components/pagination.vue";
 
 describe("HelloWorld.vue", () => {
   it("renders props.msg when passed", () => {
     const msg: string = "new message";
-    const wrapper: any = shallowMount(HelloWorld, {
+    const wrapper: any = shallowMount(pagination, {
       propsData: { msg }
     });
     expect(wrapper.text()).toMatch(msg);

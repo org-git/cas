@@ -1,61 +1,84 @@
 <template>
-  <section>
-    <b-row align-v="center">
-      <b-col cols="3" offset-md="6">
-        <b-card-group deck>
-          <b-card header="Login" header-tag="header" border-variant="primary">
-            <b-form validated class="form-horizontal" role="form" @submit="onSubmit">
-              <b-form-group
-                label-cols-md="3"
-                label-align="right"
-                label="UserName"
-                label-for="username"
-              >
-                <b-form-input
-                  type="text"
-                  v-model="user.username"
-                  required
-                  trim
-                  placeholder="username"
-                  id="username"
-                ></b-form-input>
-              </b-form-group>
-
-              <b-form-group
-                label-cols-md="3"
-                label-align="right"
-                label="Password"
-                label-for="password"
-              >
-                <b-form-input
-                  type="password"
-                  v-model="user.password"
-                  required
-                  trim
-                  placeholder="password"
-                  id="password"
-                ></b-form-input>
-              </b-form-group>
-              <b-button type="submit" variant="primary">Login</b-button>
-            </b-form>
-          </b-card>
-        </b-card-group>
-      </b-col>
-    </b-row>
-  </section>
+  <el-row type="flex" justify="center" align="middle">
+    <el-col>
+      <el-carousel arrow="never" height="740px">
+        <el-carousel-item v-for="(item, index) in imgs" :key="item">
+          <img :src="item" :alt="`img${index+1}`" />
+        </el-carousel-item>
+      </el-carousel>
+    </el-col>
+    <el-tabs type="border-card" class="box">
+      <el-tab-pane>
+        <span slot="label">
+          <i class="el-icon-s-custom"></i>login
+        </span>
+        <el-form :model="login" :rules="rules" status-icon ref="form" label-width="100px">
+          <el-form-item label="UserName" prop="username">
+            <el-input v-model="login.username" prefix-icon="el-icon-search"></el-input>
+          </el-form-item>
+          <el-form-item label="Password" prop="password">
+            <el-input
+              type="password"
+              v-model="login.password"
+              prefix-icon="el-icon-lock"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              type="primary"
+              size="medium"
+              icon="iconfont icon-denglu"
+              @click="onSubmit('form')"
+            >Login</el-button>&emsp;
+            <el-link type="danger">忘记密码</el-link>
+          </el-form-item>
+        </el-form>
+      </el-tab-pane>
+    </el-tabs>
+  </el-row>
 </template>
 
+<style lang="scss" scoped>
+.box {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  z-index: 99;
+  margin-top: -170px;
+  margin-right: 130px;
+}
+</style>
 <script>
 export default {
   data() {
     return {
-      user: { username: "admin", password: "123456" }
+      imgs: [
+        "http://pic.bizhi360.com/bbpic/15/915.jpg",
+        "https://uploads.5068.com/allimg/171116/1-1G116113Z8.jpg"
+      ],
+      login: { username: "admin", password: "123456" },
+      rules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          { min: 3, max: 20, message: "长度在3到20个字符", trigger: "blur" }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          { min: 3, max: 20, message: "长度在3到20个字符", trigger: "blur" }
+        ]
+      }
     };
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.user));
+    onSubmit(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert(JSON.stringify(this.login));
+        } else {
+          return false;
+        }
+      });
     }
   }
 };

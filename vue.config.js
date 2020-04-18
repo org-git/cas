@@ -22,13 +22,13 @@ module.exports = {
     // 是否使用css分离插件 ExtractTextPlugin
     extract: true,
     // 开启 CSS source maps?
-    sourceMap: false,
+    sourceMap: true,
     // css预设器配置项
     loaderOptions: {
-      sass: { data: `@import '@/assets/scss/style.scss';` } //引入全局sass样式
+      sass: { prependData: `@import '@/assets/scss/style.scss';` } //引入全局sass样式
     },
     // 启用 CSS modules for all css / pre-processor files.
-    modules: false
+    requireModuleExtension: true
   },
   // use thread-loader for babel & TS in production build
   // enabled by default if the machine has more than 1 cores

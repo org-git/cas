@@ -1,20 +1,18 @@
 import Vue from "vue";
 import Component from "vue-class-component";
-import BootstrapVue from "bootstrap-vue";
-import VueI18n from "vue-i18n";
-
-import "./registerServiceWorker";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import i18n from "@/locales/index";
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+import App from "@/App.vue";
+import "@/registerServiceWorker";
+import router from "@/router";
+import store from "@/store";
 
 Vue.config.productionTip = false;
-Vue.use(BootstrapVue);
-Vue.use(VueI18n);
+Vue.use(ElementUI);
+
+Vue.component("cas-nav-item", () => import("@/components/navitem.vue"));
+Vue.component("cas-pagination", () => import("@/components/pagination.vue"));
+Vue.component("cas-footer", () => import("@/components/footer.vue"));
 
 /**
  * 路由跳转更新标题
@@ -36,6 +34,5 @@ Component.registerHooks([
 new Vue({
   router,
   store,
-  // i18n,
   render: h => h(App)
 }).$mount("#app");
