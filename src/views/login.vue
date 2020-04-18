@@ -3,18 +3,25 @@
     <el-col>
       <el-carousel arrow="never" height="740px">
         <el-carousel-item v-for="(item, index) in imgs" :key="item">
-          <img :src="item" :alt="`img${index+1}`" />
+          <img :src="item" :alt="`img${index + 1}`" />
         </el-carousel-item>
       </el-carousel>
     </el-col>
     <el-tabs type="border-card" class="box">
       <el-tab-pane>
-        <span slot="label">
-          <i class="el-icon-s-custom"></i>login
-        </span>
-        <el-form :model="login" :rules="rules" status-icon ref="form" label-width="100px">
+        <span slot="label"> <i class="el-icon-s-custom"></i>login </span>
+        <el-form
+          :model="login"
+          :rules="rules"
+          status-icon
+          ref="form"
+          label-width="100px"
+        >
           <el-form-item label="UserName" prop="username">
-            <el-input v-model="login.username" prefix-icon="el-icon-search"></el-input>
+            <el-input
+              v-model="login.username"
+              prefix-icon="el-icon-search"
+            ></el-input>
           </el-form-item>
           <el-form-item label="Password" prop="password">
             <el-input
@@ -30,8 +37,9 @@
               size="medium"
               icon="iconfont icon-denglu"
               @click="onSubmit('form')"
-            >Login</el-button>&emsp;
-            <el-link type="danger">忘记密码</el-link>
+              >Login</el-button
+            >&emsp;
+            <el-link :underline="false" type="info">Forgot password?</el-link>
           </el-form-item>
         </el-form>
       </el-tab-pane>
