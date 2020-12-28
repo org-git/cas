@@ -8,7 +8,7 @@ import mutations from "@/store/mutations";
 Vue.use(Vuex);
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext
-const modulesFiles = require.context("@/store/modules", true, /\.ts$/);
+// const modulesFiles = require.context("@/store/modules", true, /\.ts$/);
 
 // you do not need `import app from './modules/app'`
 // it will auto require all vuex module from modules file
